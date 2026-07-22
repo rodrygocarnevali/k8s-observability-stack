@@ -1,0 +1,20 @@
+# kube-prometheus-stack configuration
+
+# Namespace de monitoramento
+namespaceOverride: monitoring
+
+# Grafana
+grafana:
+  enabled: true
+
+# Prometheus
+prometheus:
+  enabled: true
+
+# Alertmanager
+alertmanager:
+  enabled: true
+
+# Node Exporter
+nodeExporter:
+  enabled: true
