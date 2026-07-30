@@ -1,41 +1,43 @@
-name: CI Demo API
+name: CI - Demo API
 
 on:
-push:
-branches: [main]
-pull_request:
-branches: [main]
+  push:
+    branches:
+      - main
 
 jobs:
-test:
-runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-```
-defaults:
-  run:
-    working-directory: demo-api
+    defaults:
+      run:
+        working-directory: demo-api
 
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  - uses: actions/setup-go@v5
-    with:
-      go-version: '1.26'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26'
 
-  - run: go mod download
+      - name: Download dependencies
+        run: go mod download
 
-  - run: go test ./...
+      - name: Run tests
+        run: go test ./...
 
-  - run: go build -o demo-api .
-```
+      - name: Build application
+        run: go build -o demo-api .
 
-docker:
-runs-on: ubuntu-latest
-needs: test
+  docker:
+    runs-on: ubuntu-latest
+    needs: test
 
-```
-steps:
-  - uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  - run: docker build -t demo-api:${{ github.sha }} ./demo-api
-```
+      - name: Build Docker image
+        run: docker build -t demo-api:${{ github.sha }} ./demo-api
