@@ -9,11 +9,12 @@ branches: [main]
 jobs:
 test:
 runs-on: ubuntu-latest
-defaults:
-run:
-working-directory: demo-api
 
 ```
+defaults:
+  run:
+    working-directory: demo-api
+
 steps:
   - uses: actions/checkout@v4
 
