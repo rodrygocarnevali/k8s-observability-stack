@@ -1,4 +1,3 @@
-```yaml
 name: CI - Demo API
 
 on:
@@ -55,4 +54,4 @@ jobs:
 
       - name: Verify image from Docker Hub
         run: docker pull rodrygocarnevali/demo-api:latest
-```
+
