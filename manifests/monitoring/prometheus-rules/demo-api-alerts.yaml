@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: demo-api-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: demo-api
+      rules:
+        - alert: DemoAPIPodUnavailable
+          expr: sum(up{job="demo-api"}) < 2
+          for: 1m
+          labels:
+            severity: warning
+            service: demo-api
+          annotations:
+            summary: "Demo API has a pod unavailable"
+            description: "The Demo API has fewer than 2 healthy pods available."
