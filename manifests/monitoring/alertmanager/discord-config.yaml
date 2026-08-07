@@ -8,6 +8,8 @@ metadata:
 spec:
   route:
     receiver: discord
+    matchers:
+      - service="demo-api"
     groupBy:
       - alertname
       - service
