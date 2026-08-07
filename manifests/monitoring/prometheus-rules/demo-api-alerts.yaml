@@ -15,6 +15,7 @@ spec:
           labels:
             severity: warning
             service: demo-api
+            namespace: monitoring
           annotations:
             summary: "Demo API has a pod unavailable"
             description: "The Demo API has fewer than 2 healthy pods available."
