@@ -12,8 +12,8 @@ spec:
     receiver: discord
 
     matchers:
-      - name: service
-        value: demo-api
+      - name: alertname
+        value: DemoAPIPodUnavailable
         matchType: "="
 
     groupBy:
