@@ -1,18 +1,25 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
+
 metadata:
   name: discord-alerts
   namespace: monitoring
   labels:
     release: monitoring
+
 spec:
   route:
     receiver: discord
+
     matchers:
-      - service="demo-api"
+      - name: service
+        value: demo-api
+        matchType: "="
+
     groupBy:
       - alertname
       - service
+
     groupWait: 10s
     groupInterval: 1m
     repeatInterval: 4h
@@ -24,3 +31,4 @@ spec:
             name: alertmanager-discord-webhook
             key: webhook-url
           sendResolved: true
+
